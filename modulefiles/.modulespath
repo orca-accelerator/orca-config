@@ -1,0 +1,4 @@
+/software/modulefiles
+/software/spack/modules/linux-rocky9-x86_64/Core
+/software/builds/intel/2024.2/etc/modulefiles
+/software/modulefiles/StdEnv.lua

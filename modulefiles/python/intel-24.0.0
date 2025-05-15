@@ -1,0 +1,8 @@
+#%Module1.0
+module-whatis "Provide the environment variables to run Intel Python3 version 3.9.19"
+
+setenv PYTHONPATH              /software/python/intel/3.9.19/intelpython3/bin
+setenv PYTHONHOME              /software/python/intel/3.9.19/intelpython3
+append-path LD_LIBRARY_PATH    /usr/lib:/usr/lib64:/software/python/intel/3.9.19/intelpython3/lib
+prepend-path MANPATH           /software/python/intel/3.9.19/intelpython3/share/man
+prepend-path PATH              /software/python/intel/3.9.19/intelpython3/bin

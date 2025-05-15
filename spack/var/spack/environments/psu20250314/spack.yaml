@@ -1,0 +1,126 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  compilers:
+  - compiler:
+      spec: gcc@=13.2.0
+      paths:
+        cc: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/gcc
+        cxx: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/g++
+        f77: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/gfortran
+        fc: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/gfortran
+      flags: {}
+      operating_system: rocky9
+      target: x86_64
+      modules: []
+      environment: {}
+      extra_rpaths: []
+  - compiler:
+      spec: gcc@=12.2.0
+      paths:
+        cc: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/gcc
+        cxx: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/g++
+        f77: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/gfortran
+        fc: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/gfortran
+      flags: {}
+      operating_system: rocky9
+      target: x86_64
+      modules: []
+      environment: {}
+      extra_rpaths: []
+  packages:
+    all:
+      compiler: [gcc@13.2.0]
+      target: [x86_64_v4]
+    gcc:
+      buildable: false
+      externals:
+      - spec: gcc@13.2.0 languages='c,c++,fortran'
+        prefix: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl
+        extra_attributes:
+          compilers:
+            c: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/gcc
+            cxx: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/g++
+            fortran: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-13.2.0-efzpr6sylxbini7rcdtagoqaka7pjwtl/bin/gfortran
+      - spec: gcc@12.2.0 languages='c,c++,fortran'
+        prefix: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx
+        extra_attributes:
+          compilers:
+            c: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/gcc
+            cxx: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/g++
+            fortran: /software/spack/spack_compilers/opt/spack/linux-rocky9-x86_64_v4/gcc-11.5.0/gcc-12.2.0-lpmiwnoeiudhpld6slptc37md6afktnx/bin/gfortran
+    slurm:
+      externals:
+      - spec: slurm@23.11.10
+        prefix: /usr
+      buildable: false
+        #hwloc:
+        #  buildable: false
+        #  externals:
+        #  - spec: hwloc@2.10.0
+        #    prefix: /software/builds/hwloc/2.10.0
+        #pmix:
+        #  buildable: false
+        #  externals:
+        #  - spec: pmix@5.0.3
+        #    prefix: /software/builds/pmix/5.0.3
+        #ucx:
+        #  buildable: false
+        #  externals:
+        #  - spec: ucx@1.16.0
+        #    prefix: /software/builds/ucx/1.16.0
+  # Software specs go here
+  specs:
+  - gcc@13.2.0
+  - gcc@12.2.0
+  - cmake@3.27.9
+  - openmpi@4.1.4 cuda=true fabrics=ucx schedulers=slurm
+  - openmpi@5.0.3 cuda=true fabrics=ucx schedulers=slurm
+  - cuda@11.8.0
+  - cuda@12.4.0
+  - julia@1.10.2
+  - go@1.22.2
+  - openblas@0.3.26
+  - mpich@4.2.1 cuda=true slurm=true
+  - r@4.4.0
+  - apptainer@1.1.9 suid=false
+  - python@3.12.1
+  - hpl@2.3 ^openblas threads=openmp
+  - php
+  - blas
+  - hpcg@3.1
+  view: false
+  concretizer:
+    unify: when_possible
+  # LMOD module configuration
+  modules:
+    default:
+      enable:
+      - lmod
+      roots:
+        lmod: /software/spack/modules
+      lmod:
+        hierarchy: []
+        core_compilers:
+        - gcc@13.2.0
+        - gcc@12.2.0
+        hide_implicits: true
+        hash_length: 0
+        projections:
+          all: '{name}/{version}-{compiler.name}-{compiler.version}'
+          gcc: '{name}/{version}'
+        cuda:
+          environment:
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib64'
+        gcc:
+          environment:
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib64'
+        openmpi:
+          environment:
+            set:
+              PMIX_MCA_psec: ^munge
