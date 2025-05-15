@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dt=$(date +"%Y%m%d%H%M")
+TZ=UTC sacct --clusters=orca --allusers \
+    --parsable2 --noheader --allocations --duplicates \
+    --format jobid,jobidraw,cluster,partition,qos,account,group,gid,user,uid,\
+submit,eligible,start,end,elapsed,exitcode,state,nnodes,ncpus,reqcpus,reqmem,\
+reqtres,alloctres,timelimit,nodelist,jobname \
+    --starttime now-1hour > /cluster/xdmod/orca${dt}.txt
+
+#    --starttime 2025-03-30T00:00:00 --endtime 2025-03-30T23:59:59 >/tmp/slurm.log
+
+# See the ingest script
+#/usr/bin/xdmod-shredder -r coeus -f slurm -i /tmp/slurm.log
+# rm -f /tmp/slurm.log

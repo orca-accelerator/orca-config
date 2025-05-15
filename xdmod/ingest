@@ -1,0 +1,15 @@
+#!/bin/bash
+
+TZ=UTC
+for src in /coeuscluster/xdmod/coeus*.txt; do
+    if [[ -s $src ]]; then
+        /usr/bin/xdmod-shredder -r Coeus -f slurm -i $src
+        rm -f $src
+    fi
+done
+for src in /orcacluster/xdmod/orca*.txt; do
+    if [[ -s $src ]]; then
+        /usr/bin/xdmod-shredder -r Orca -f slurm -i $src
+        rm -f $src
+    fi
+done
