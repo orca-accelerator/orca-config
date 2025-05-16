@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd /cluster/xdmod
+h=$(hostname -f)
+echo $h
+case $h in
+    head.orca.pdx.edu) echo ./collect_orca;;
+    coeus.rc.pdx.edu) echo ./collect_coeus;;
+    *) echo "Unknown host";;
+esac
