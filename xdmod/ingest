@@ -21,3 +21,4 @@ for src in orca*.txt; do
     	rm -f $src
     fi
 done
+/usr/bin/xdmod-ingest
