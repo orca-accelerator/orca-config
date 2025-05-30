@@ -11,7 +11,7 @@ The prod environment would be tasked with creating modules for users based on th
 Both building in devel and refreshing modules in prod could be automated with CI/CD (Jenkins for example).
 Note: This document will not cover installing packages as "Docker" images to an OCI repo.
 
-##Installation
+## Installation
 
 Installation of Spack is done using the typical git clone and then creating environments.
 
@@ -26,7 +26,7 @@ spack env create prod
 The spack.yaml configuration files need to be modified once the environments are created.  See below for specifics.  In the configuration files $spack refers to the root directory of Spack, this is 
 /software/spack/spack on Coeus and Orca clusters.  The root directory can also be set using the SPACK_ROOT environment variable.
 
-##Development (devel) configuration and use
+## Development (devel) configuration and use
 
 Activate the environment that was created above.
 ```shell
@@ -115,15 +115,15 @@ spack:
               PSM2_MULTI_EP: '0'
 ```
 Things to note, there is a different path for modules than the default given in modules.yaml, and the default compiler is the Rocky Linux provided gcc@11.5.0.  There is an override in the view for icu4c due to name conflicts that were encountered. 
-##Build Cache
-###GPG
+## Build Cache
+### GPG
 
 GPG keys need to be created before building a binary cache.
 ```
 spack gpg init
 spack gpg create spack help-rc@pdx.edu
 ```
-###Paths
+### Paths
 
 Chose a globally accessible location in NFS for the build cache directory, 
 such as /software/spack/cache.
@@ -135,14 +135,14 @@ spack env activate devel
 spack buildcache push --with-build-dependencies /software/spack/cache
 ```
 
-##System Config
+## System Config
 
 Make sure libstdc++-static-11.5.0-5.el9_5.x86_64 is installed (it is not installed normally).
 
-##Production (prod) configuration and use
+## Production (prod) configuration and use
 
 The configuration file (spack.yaml) needs to look like this.  Note, the mirror configuration for where the devel environment has built the cache and the view.
-```
+```yaml
 # This is a Spack Environment file.
 #
 # It describes a set of packages to be installed, along with
@@ -205,8 +205,8 @@ Packages can be added with 'spack add package' and then 'spack install package' 
 
 Modules (discussed elsewhere in the KB) are created with the 'spack module lmod refresh' command.
 
-##Miscellaneous
-###Upstream versus Mirror
+## Miscellaneous
+### Upstream versus Mirror
 
 A mirror provides pre-built binary packages that speed up installation significantly.  On the other hand an upstream configuration is a reference to another Spack install and the cached sources there.  The latter would be used to avoid downloading from Internet sources.
 Uninstall a package
@@ -223,7 +223,7 @@ spack mirror list
 # remove the package from the listed mirror path
 ```
 
-##References
+## References
 
 Spack documentation 
 
