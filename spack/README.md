@@ -137,7 +137,9 @@ spack buildcache push --with-build-dependencies /software/spack/cache
 
 ## System Config
 
-Make sure libstdc++-static-11.5.0-5.el9_5.x86_64 is installed (it is not installed normally).
+Make sure 
+  libstdc++-static-11.5.0-5.el9_5.x86_64
+is installed (it is not installed normally).
 
 ## Production (prod) configuration and use
 
@@ -225,13 +227,15 @@ spack mirror list
 
 ## References
 
-Spack documentation 
+[Spack documentation](https://spack.readthedocs.io/en/latest/)
 
-Basic Installation Tutorial
+[Spack Tutorial (with slide deck)](https://spack-tutorial.readthedocs.io/en/latest/)
 
-Environments Tutorial 
+[Installation Tutorial](https://spack-tutorial.readthedocs.io/en/latest/tutorial_basics.html)
 
-Configuration Tutorial 
+[Environments Tutorial](https://spack-tutorial.readthedocs.io/en/latest/tutorial_environments.html)
 
-Binary Caches Tutorial 
+[Configuration Tutorial](https://spack-tutorial.readthedocs.io/en/latest/tutorial_configuration.html)
+
+[Binary Caches Tutorial](https://spack-tutorial.readthedocs.io/en/latest/tutorial_binary_cache.html)
 
