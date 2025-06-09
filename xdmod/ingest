@@ -6,9 +6,9 @@ for src in coeus*.txt; do
     if [[ -s $src ]]; then
         /usr/bin/xdmod-shredder -r Coeus -f slurm -i $src
         mv $src "_$src"
-	gzip "_$src"
+        gzip "_$src"
     else
-    	rm -f $src
+        rm -f $src
     fi
 done
 cd /orcacluster/xdmod
@@ -16,9 +16,9 @@ for src in orca*.txt; do
     if [[ -s $src ]]; then
         /usr/bin/xdmod-shredder -r Orca -f slurm -i $src
         mv $src "_$src"
-	gzip "_$src"
+        gzip "_$src"
     else
-    	rm -f $src
+        rm -f $src
     fi
 done
-/usr/bin/xdmod-ingest
+/usr/bin/xdmod-ingestor
