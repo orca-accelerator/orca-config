@@ -1,1 +1,78 @@
-/var/www/ood/apps/sys/bc_example_jupyter/form.yml
+# Batch Connect app configuration file
+#
+# @note Used to define the submitted cluster, title, description, and
+#   hard-coded/user-defined attributes that make up this Batch Connect app.
+---
+
+# **MUST** set cluster id here that matches cluster configuration file located
+# under /etc/ood/config/clusters.d/*.yml
+# @example Use the Owens cluster at Ohio Supercomputer Center
+#     cluster: "owens"
+cluster: "orca"
+
+# Define attribute values that aren't meant to be modified by the user within
+# the Dashboard form
+attributes:
+  # Set the corresponding modules that need to be loaded for Jupyter to run
+  #
+  # @note It is called within the batch job as `module load <modules>` if
+  #   defined
+  # @example Do not load any modules
+  #     modules: ""
+  # @example Using default python module
+  #     modules: "python"
+  # @example Using specific python module
+  #     modules: "python/3.5"
+  # @example Using combination of modules
+  #     modules: "python/3.5 cuda/8.0.44"
+  modules: "py-notebook"
+  bc_queue: "main"
+
+  # Any extra command line arguments to feed to the `jupyter notebook ...`
+  # command that launches the Jupyter notebook within the batch job
+  extra_jupyter_args: ""
+
+# All of the attributes that make up the Dashboard form (in respective order),
+# and made available to the submit configuration file and the template ERB
+# files
+#
+# @note You typically do not need to modify this unless you want to add a new
+#   configurable value
+# @note If an attribute listed below is hard-coded above in the `attributes`
+#   option, then it will not appear in the form page that the user sees in the
+#   Dashboard
+form:
+  - modules
+  - extra_jupyter_args
+    #  - bc_account
+  - bc_queue
+  - bc_num_hours
+    #- bc_num_slots
+    #- bc_email_on_started
+  - num_cores
+  - gpus
+
+attributes:
+  modules:
+    value: "py-notebook"
+  bc_queue:
+    value: "main"
+  bc_num_hours:
+    value: 4
+    min: 1
+    max: 168
+    step: 1
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: |
+      Number of cores on node type. 
+    min: 1
+    max: 64
+    step: 1
+  gpus:
+    widget: "number_field"
+    label: "Number of gpus"
+    min: 0
+    max: 4
