@@ -1,0 +1,63 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs:
+  - gcc@13.4.0
+  - cmake
+  - r@4.5.1
+  - blas
+  - openblas
+  - libmd
+  - libbsd
+  - libedit
+  - bison
+  - python@3.12.9
+  - which
+  - texinfo
+  - libtirpc
+  - icu4c
+  - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
+  - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
+  - cuda@11.8.0
+  - cuda@12.9.0
+  - go
+  - mpich@4.3.0+cuda+slurm
+  - apptainer@1.4.1~suid
+  - php
+  - wps
+  - wrf
+  - nco
+  - py-notebook ^python@3.12.9
+  view:
+    devel:
+      root: /software/spack/devel/view
+      projections:
+        all: '{name}-{version}-{compiler.name}-{compiler.version}-{hash}'
+  concretizer:
+    unify: when_possible
+  packages:
+    all:
+      target: [x86_64_zen4]
+    gcc:
+      externals:
+      - spec: gcc@11.5.0 languages:='c,c++'
+        prefix: /usr
+        extra_attributes:
+          compilers:
+            c: /usr/bin/gcc
+            cxx: /usr/bin/g++
+    slurm:
+      externals:
+      - spec: slurm@23.11.10
+        prefix: /usr
+      buildable: false
+    libglx:
+      require: [opengl]
+    opengl:
+      buildable: false
+      externals:
+      - prefix: /usr
+        spec: opengl@4.6
