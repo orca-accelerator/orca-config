@@ -61,3 +61,6 @@ spack:
       externals:
       - prefix: /usr
         spec: opengl@4.6
+  repos:
+    builtin:
+      destination: /software/spack/devel/repos
