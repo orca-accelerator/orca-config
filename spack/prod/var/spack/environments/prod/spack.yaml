@@ -27,9 +27,6 @@ spack:
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
   - php
-  - wps
-  - wrf
-  - nco
   - py-notebook ^python@3.12.9
   view:
     prod:
@@ -39,7 +36,7 @@ spack:
   concretizer:
     unify: when_possible
   mirrors:
-    cache: file://software/spack/cache
+    cache: file:///software/spack/cache
   packages:
     all:
       target: [x86_64_zen4]
