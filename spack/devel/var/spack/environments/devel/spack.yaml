@@ -28,7 +28,6 @@ spack:
   - go
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
-  - py-notebook ^python@3.12.9
   view:
     devel:
       root: /software/spack/devel/view
