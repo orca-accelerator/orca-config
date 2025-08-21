@@ -19,7 +19,7 @@ spack:
   - texinfo
   - libtirpc
   - icu4c
-  - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
+#  - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
   - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
   - cuda@11.8.0
   - cuda@12.9.0
