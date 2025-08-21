@@ -17,6 +17,7 @@ spack:
   - python@3.12.9
   - which
   - texinfo
+  - texlive
   - libtirpc
   - icu4c
 #  - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
@@ -26,7 +27,6 @@ spack:
   - go
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
-  - php
   - py-notebook ^python@3.12.9
   view:
     prod:
