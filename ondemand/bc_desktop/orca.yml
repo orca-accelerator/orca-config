@@ -1,0 +1,35 @@
+---
+title: "Orca Desktop"
+cluster: "orca"
+attributes:
+  desktop:
+    widget: "hidden_field"
+    value: "xfce"
+  bc_queue: "main"
+  bc_account: "null"
+  bc_num_hours:
+    value: 4
+    min: 1
+    max: 168
+    step: 1
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: |
+      Number of cores on node type. 
+    min: 1
+    max: 64
+    step: 1
+  gpus:
+    widget: "number_field"
+    label: "Number of gpus"
+    min: 0
+    max: 4
+submit: "/etc/ood/config/apps/bc_desktop/submit/submit.yml.erb"
+form:
+  - gpus
+  - bc_num_hours
+  - num_cores
+  - desktop
+  - bc_queue
