@@ -5,7 +5,7 @@ attributes:
   desktop:
     widget: "hidden_field"
     value: "xfce"
-  bc_queue: "main"
+  bc_queue: "short"
   bc_account: "null"
   bc_num_hours:
     value: 4
