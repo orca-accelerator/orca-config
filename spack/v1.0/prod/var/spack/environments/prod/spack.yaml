@@ -1,0 +1,64 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs:
+  - cmake
+  - r@4.5.1
+  - blas
+  - openblas
+  - libmd
+  - libbsd
+  - libedit
+  - bison
+  - python@3.12.9
+  - python@3.13.5
+  - which
+  - texinfo
+  - texlive
+  - libtirpc
+  - icu4c
+  - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
+  - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
+  - cuda@11.8.0
+  - cuda@12.9.0
+  - go
+  - mpich@4.3.0+cuda+slurm
+  - apptainer@1.4.1~suid
+  view:
+    prod:
+      root: /software/spack/v1.0/view
+      projections:
+        all: "{name}-{version}-{compiler.name}-{compiler.version}-{hash}"
+  concretizer:
+    unify: when_possible
+  packages:
+    gcc:
+      externals:
+      - spec: gcc@13.4.0 languages:='c,c++,fortran'
+        prefix: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam
+        extra_attributes:
+          compilers:
+            c: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/gcc
+            cxx: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/g++
+            fortran: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/gfortran
+    c:
+      require:
+      - one_of: [gcc@13]
+    cxx:
+      require:
+      - one_of: [gcc@13]
+    fortran:
+      require:
+      - one_of: [gcc@13]
+  modules:
+    default:
+      enable:
+      - lmod
+      roots:
+        lmod: /software/spack/v1.0/modules
+      lmod:
+        core_compilers:
+        - gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam
