@@ -27,11 +27,13 @@ spack:
   - go
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
+  - pmix@5.0.3+munge
+  - ucx@1.16.0
   view:
     prod:
       root: /software/spack/v1.0/view
       projections:
-        all: "{name}-{version}-{compiler.name}-{compiler.version}-{hash}"
+        all: '{name}-{version}-{compiler.name}-{compiler.version}-{hash}'
   concretizer:
     unify: when_possible
   packages:
@@ -53,6 +55,11 @@ spack:
     fortran:
       require:
       - one_of: [gcc@13]
+    slurm:
+      externals:
+      - spec: slurm@23.11.10
+        prefix: /usr/bin
+      buildable: false
   modules:
     default:
       enable:
