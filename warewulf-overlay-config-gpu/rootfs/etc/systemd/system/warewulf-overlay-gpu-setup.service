@@ -1,0 +1,11 @@
+[Unit]
+Description=Installs/configures GPU drivers for detected GPUs.
+After=systemd-udev-settle.service remote-fs.target local-fs.target network.target
+Before=slurmd.service
+
+[Service]
+ExecStart=/warewulf/sbin/service.warewulf-overlay-gpu-setup.sh
+Type=oneshot
+RemainAfterExit=yes 
+
+[Install]
