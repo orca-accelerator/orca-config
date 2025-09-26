@@ -21,17 +21,22 @@ spack:
   - libtirpc
   - icu4c
   - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
-  - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
+# - prrte@1.0.0
+# - gmake@4.4.1
+  - ucx@1.16.0
+  - pmix@4.2.2+munge
+# - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
   - cuda@11.8.0
   - cuda@12.9.0
   - go
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
+  - hpl
   view:
     prod:
       root: /software/spack/v1.0/view
       projections:
-        all: "{name}-{version}-{compiler.name}-{compiler.version}-{hash}"
+        all: '{name}-{version}-{compiler.name}-{compiler.version}-{hash}'
   concretizer:
     unify: when_possible
   packages:
@@ -53,6 +58,11 @@ spack:
     fortran:
       require:
       - one_of: [gcc@13]
+    slurm:
+      externals:
+      - spec: slurm@23.11.10
+        prefix: /usr/bin
+      buildable: false
   modules:
     default:
       enable:
