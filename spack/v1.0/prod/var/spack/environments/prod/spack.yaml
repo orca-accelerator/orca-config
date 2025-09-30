@@ -18,20 +18,15 @@ spack:
   - which
   - texinfo
   - texlive
-# - libtirpc
-# - icu4c
   - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
-# - prrte@1.0.0
-# - gmake@4.4.1
   - ucx@1.16.0
   - pmix@4.2.2+munge
+# This version of openmpi had build problems
 # - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
   - cuda@11.8.0
   - cuda@12.9.0
-# - go
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
-# - hpl
   view:
     prod:
       root: /software/spack/v1.0/view
