@@ -1,0 +1,32 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs:
+  - gcc@13.4.0
+  view: true
+  concretizer:
+    unify: true
+  packages:
+    gcc:
+      externals:
+      - spec: gcc@11.5.0 languages:='c,c++,fortran'
+        prefix: /usr
+        extra_attributes:
+          compilers:
+            c: /usr/bin/gcc
+            cxx: /usr/bin/g++
+            fortran: /usr/bin/gfortran
+  modules:
+    default:
+      enable:
+      - lmod
+      roots:
+        lmod: /software/spack/gcc/modules
+      lmod:
+        core_compilers:
+        - gcc@11.5.0/5b6fbujfnenrtsl34lqnebu3nfrgg677
+        - gcc@11.5.0/rns3k3xg4b5fh5sndw3oghppgkkgpagz
+
