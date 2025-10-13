@@ -1,5 +1,5 @@
 /software/modulefiles
 /software/builds/intel/2024.2/etc/modulefiles
 /software/modulefiles/StdEnv.lua
-/software/spack/v1.0/modules/linux-rocky9-x86_64/Core
 /software/spack/v1.0/modules/linux-rocky9-x86_64/gcc/13.4.0
+/software/spack/v1.0/modules/linux-rocky9-x86_64/Core
