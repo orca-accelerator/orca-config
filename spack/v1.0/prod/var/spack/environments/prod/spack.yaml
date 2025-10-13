@@ -5,6 +5,7 @@
 spack:
   # add package specs to the `specs` list
   specs:
+  - gcc@13.4.0
   - cmake
   - r@4.5.1
   - blas
@@ -36,6 +37,7 @@ spack:
     unify: when_possible
   packages:
     gcc:
+      buildable: false
       externals:
       - spec: gcc@13.4.0 languages:='c,c++,fortran'
         prefix: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam
@@ -67,3 +69,18 @@ spack:
       lmod:
         core_compilers:
         - gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam
+        hide_implicits: true
+        all:
+          autoload: direct # or `run`
+        hash_length: 0
+        projections:
+          all: '{name}/{version}-{compiler.name}-{compiler.version}'
+          gcc: '{name}/{version}'
+        openblas:
+          environment:
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib'
+        cuda:
+          environment:
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib64'
