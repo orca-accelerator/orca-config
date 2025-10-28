@@ -28,6 +28,8 @@ spack:
   - mpich@4.3.0+cuda+slurm
   - apptainer@1.4.1~suid
   - aocc+license-agreed
+  - amd-aocl@5.0
+  - amdblis@5.0
   view:
     prod:
       root: /software/spack/v1.0/view
