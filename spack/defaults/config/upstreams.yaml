@@ -1,0 +1,5 @@
+upstreams:
+  spack-instance-1:
+    install_tree: /software/spack/upstream
+    modules:
+      lmod: /software/spack/modules

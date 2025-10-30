@@ -1,0 +1,25 @@
+packages:
+  gcc:
+    buildable: false
+    externals:
+    - spec: gcc@13.4.0 languages:='c,c++,fortran'
+      prefix: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam
+      extra_attributes:
+        compilers:
+          c: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/gcc
+          cxx: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/g++
+          fortran: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/gfortran
+  c:
+    require:
+    - one_of: [gcc@13]
+  cxx:
+    require:
+    - one_of: [gcc@13]
+  fortran:
+    require:
+    - one_of: [gcc@13]
+  slurm:
+    externals:
+    - spec: slurm@23.11.10
+      prefix: /usr/bin
+    buildable: false
