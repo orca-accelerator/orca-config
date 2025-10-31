@@ -1,4 +1,6 @@
 packages:
+  all:
+    target: [zen4]
   gcc:
     buildable: false
     externals:
