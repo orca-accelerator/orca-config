@@ -1,0 +1,84 @@
+
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs:
+  - gcc@13.4.0
+  - cmake@3.31.9
+  - python@3.12.12
+  - python@3.14.0
+  - openmpi@4.1.8+cuda fabrics=ucx schedulers=slurm
+  - openmpi@5.0.8+cuda fabrics=ucx schedulers=slurm
+  - cuda@11.8.0
+  - cuda@12.9.0
+  - mpich@4.3.0+cuda+slurm
+  - apptainer@1.4.1~suid
+  - aocc@5.0.0+license-agreed
+  - amd-aocl@5.0
+  - amdblis@5.0
+  - libxcb@1.17.0
+  - boost@1.88.0
+  view: false
+#    prod:
+#      root: /software/spack/v1.0/view
+#      projections:
+#        all: '{name}-{version}-{compiler.name}-{compiler.version}-{hash}'
+  concretizer:
+    unify: when_possible
+  packages:
+    gcc:
+      buildable: false
+      externals:
+      - spec: gcc@13.4.0 languages:='c,c++,fortran'
+        prefix: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam
+        extra_attributes:
+          compilers:
+            c: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/gcc
+            cxx: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/g++
+            fortran: /software/spack/gcc/opt/spack/linux-zen4/gcc-13.4.0-jzaajeossonz4fmu7l376bc7mzftzxam/bin/gfortran
+    c:
+      require:
+      - one_of: [gcc@13]
+    cxx:
+      require:
+      - one_of: [gcc@13]
+    fortran:
+      require:
+      - one_of: [gcc@13]
+    slurm:
+      externals:
+      - spec: slurm@23.11.10
+        prefix: /usr/bin
+      buildable: false
+  modules:
+    default:
+      enable:
+      - lmod
+      roots:
+        lmod: /software/spack/v1.1.1/modules
+      lmod:
+        hierarchy: []
+        core_compilers:
+        - gcc@13.4.0
+        hide_implicits: true
+        #all:
+        #  autoload: direct # or `run`
+        hash_length: 0 
+        projections:
+          all: '{name}/{version}-{compiler.name}-{compiler.version}'
+          gcc: '{name}/{version}'
+        #openblas:
+        #  environment:
+        #    prepend_path:
+        #      LD_LIBRARY_PATH: '{prefix}/lib'
+        cuda:
+          environment:
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib64'
+        openmpi:
+          environment:
+            set:
+              PMIX_MCA_gds: hash
