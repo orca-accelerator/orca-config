@@ -1,0 +1,129 @@
+# Batch Connect app configuration file
+#
+# @note Used to define the submitted cluster, title, description, and
+#   hard-coded/user-defined attributes that make up this Batch Connect app.
+---
+
+# **MUST** set cluster id here that matches cluster configuration file located
+# under /etc/ood/config/clusters.d/*.yml
+# @example Use the Owens cluster at Ohio Supercomputer Center
+#     cluster: "owens"
+cluster: "orca"
+
+# Define attribute values that aren't meant to be modified by the user within
+# the Dashboard form
+attributes:
+#  auto_accounts:
+#    label: "Project / Account"
+  bc_num_hours:
+    min: 1
+    max: 4
+    
+  accelerator:
+    label: "Accelerator"
+    widget: "select"
+    help: |
+      Available GPUs:
+
+      [NVIDIA A30 GPU](https://www.techpowerup.com/gpu-specs/a30-pcie.c3792): 24GB VRAM
+
+      [NVIDIA L40s GPUs](https://www.techpowerup.com/gpu-specs/l40.c3959): 48GB VRAM
+
+      Available accelerator options:
+
+      - CPU-any: any available cpu.
+
+      - GPU-any: any available gpu.
+
+      - GPU-A30: any available A30.
+
+      - GPU-L40: any available L40.
+
+    options:
+      - [
+          "CPU (Any)",     "cpu",
+          #data-max-num-cores: 64,
+          #data-max-num-memory: 1486,
+          #data-max-num-gpus: 4,
+        ]
+      - [
+          "GPU (Any)",     "gpu",
+          #data-max-num-cores: 64,
+          #data-max-num-gpus: 4,
+          #data-max-num-memory: 1400,
+        ]
+      - [
+          "GPU (A30)",     "gpu-a30",
+          #data-max-num-cores: 64,
+          #data-max-num-gpus: 4,
+          #data-max-num-memory: 1400,
+        ]
+      - [
+          "GPU (L40)",     "gpu-l40s",
+          #data-max-num-cores: 64,
+          #data-max-num-gpus: 4,
+          #data-max-num-memory: 1400,
+        ]
+  num_cores:
+    label: "CPU cores"
+    widget: "number_field"
+    value: 1 
+    min: 1 
+    max: 64
+    step: 1 
+  num_memory:
+    label: "Memory (RAM,GB)"
+    widget: "number_field"
+    value: 1
+    min: 1
+    max: 500
+    step: 1
+  #res_check:
+  #  label: "I have a reservation"
+  #  widget: check_box
+  #  checked_value: true
+  #  unchecked_value: false
+  #  html_options:
+  #    data:
+  #      hide-reservation-when-un-checked: true
+  #reservation:
+  #  label: "Reservation"
+  num_gpus:
+    label: "Number of GPUs"
+    widget: "number_field"
+    value: 0
+    min: 0
+    max: 4 
+    step: 1
+
+  model:
+    widget: "select"
+    help: "LLM model"
+    options:
+      - [
+          "Qwen3-5",     "unsloth_Qwen3.5-397B-A17B-GGUF_UD-IQ1_S_Qwen3.5-397B-A17B-UD-IQ1_S-00001-of-00004.gguf",
+        ]
+
+  ctx_size:
+    widget: "number_field"
+    label: "Context Size"
+    value: 0
+    step: 1024
+
+  extra_args:
+    label: "Extra Arguments"
+    help: "Extra command line arguments passed verbatim to `llama-server`"
+
+form:
+  - num_cores
+  - num_memory
+  - accelerator
+  - num_gpus
+  - bc_num_hours
+  - model
+  - ctx_size
+  - extra_args
+#  - res_check
+#  - reservation
+#  - auto_accounts
+  - bc_email_on_started

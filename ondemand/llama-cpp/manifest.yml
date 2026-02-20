@@ -1,0 +1,8 @@
+---
+name: llama.cpp
+category: Interactive Apps
+subcategory: Servers
+role: batch_connect
+description: |
+  This app will launch a llama.cpp server a single node.
+  You can access a chat interface from the provided link and also the server programatically with the provided url

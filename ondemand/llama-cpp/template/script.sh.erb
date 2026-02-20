@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Benchmark info
+echo "TIMING - Starting main script at: $(date)"
+
+module load cuda
+#module purge
+#<%- if context.accelerator.include? "gpu" %>
+#module load rocky8-spack cuda
+#module load rocky8 llama.cpp/gpu-b5867
+#<%- else %>
+#module load rocky8 llama.cpp/cpu-b5867
+#umodule load cuda
+#<%- end %>
+
+set +ex
+
+
+#ipaddr=$(host $host | awk '{print $NF}')
+ipaddr=$(hostname)
+
+/software/builds/llama-cpp/llama.cpp-b8089/build/bin/llama-server \
+        -m /software/builds/models/<%= context.model %> --port ${port} \
+	--api-prefix /node/${host}/${port} \
+	--host ${ipaddr} \
+	-ngl 99 \
+	--ctx_size <%= context.ctx_size %> \
+	--threads <%= context.num_cores %> \
+	<%= context.extra_args %>
+
