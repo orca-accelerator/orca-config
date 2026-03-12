@@ -23,6 +23,7 @@ spack:
   - texlive@20250308
   - openblas@0.3.30
   - openjdk@17.0.11_9
+  - r@4.5.2
   view: false
 #    prod:
 #      root: /software/spack/v1.0/view
@@ -88,3 +89,7 @@ spack:
           environment:
             set:
               SLURM_MPI_TYPE: pmi2
+        openssh:
+            filter:
+              # Exclude adding ssh to path so it runs on non zen4 arch
+              exclude_env_vars: ["PATH"]
