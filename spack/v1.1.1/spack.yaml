@@ -1,4 +1,3 @@
-
 # This is a Spack Environment file.
 #
 # It describes a set of packages to be installed, along with
@@ -22,6 +21,8 @@ spack:
   - libxcb@1.17.0
   - boost@1.88.0
   - texlive@20250308
+  - openblas@0.3.30
+  - openjdk@17.0.11_9
   view: false
 #    prod:
 #      root: /software/spack/v1.0/view
@@ -67,7 +68,7 @@ spack:
         hide_implicits: true
         #all:
         #  autoload: direct # or `run`
-        hash_length: 0 
+        hash_length: 0
         projections:
           all: '{name}/{version}-{compiler.name}-{compiler.version}'
           gcc: '{name}/{version}'
