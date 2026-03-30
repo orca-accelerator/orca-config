@@ -85,10 +85,14 @@ spack:
           environment:
             set:
               PMIX_MCA_gds: hash
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib'
         mpich:
           environment:
             set:
               SLURM_MPI_TYPE: pmi2
+            prepend_path:
+              LD_LIBRARY_PATH: '{prefix}/lib'
         openssh:
             filter:
               # Exclude adding ssh to path so it runs on non zen4 arch
