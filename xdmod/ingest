@@ -17,5 +17,5 @@ if [[ $status -ne 0 ]]; then
     echo "Ingestor failed, check $ingestlog"
     exit $status
 fi
-mv -p $ingestlog logs
+mv -f $ingestlog logs
 gzip logs/$ingestlog

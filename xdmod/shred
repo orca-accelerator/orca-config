@@ -38,7 +38,7 @@ for src in coeus_gpu*.txt; do
         rm -f $src
     fi
 done
-mv -p $shredlog logs
+mv -f $shredlog logs
 gzip logs/$shredlog
 cd /orcacluster/xdmod
 source .venv/bin/activate
@@ -58,5 +58,5 @@ for src in orca*.txt; do
         rm -f $src
     fi
 done
-mv -p $shredlog logs
+mv -f $shredlog logs
 gzip logs/$shredlog
