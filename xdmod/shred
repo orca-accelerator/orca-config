@@ -1,0 +1,62 @@
+#!/bin/bash
+
+date >> ingestor.log
+shredlog="shredder_$(date +'%Y%m%d%H%M').log"
+
+export PATH=/usr/local/bin:$PATH
+TZ=UTC
+cd /coeuscluster/xdmod
+for src in coeus_cpu*.txt; do
+    if [[ -s $src ]]; then
+	echo ">>> Process $src <<<" | tee -a $shredlog
+	uv run --with pandas fix_elapsed.py $src | tee -a $shredlog
+        /usr/bin/xdmod-shredder -v -r Coeus_Compute -f slurm -i $src >> $shredlog
+	status=$?
+	if [[ $status -ne 0 ]]; then
+	    echo "Shredder failed on $src, check $shredlog"
+	    exit $status
+	fi
+        gzip "$src"
+	mv *.gz archive
+    else
+        rm -f $src
+    fi
+done
+for src in coeus_gpu*.txt; do
+    if [[ -s $src ]]; then
+	echo ">>> Process $src <<<" | tee -a $shredlog
+	uv run --with pandas fix_elapsed.py $src | tee -a $shredlog
+        /usr/bin/xdmod-shredder -v -r Coeus_GPU -f slurm -i $src >> $shredlog
+	status=$?
+	if [[ $status -ne 0 ]]; then
+	    echo "Shredder failed on $src, check $shredlog"
+	    exit $status
+	fi
+        gzip "$src"
+	mv *.gz archive
+    else
+        rm -f $src
+    fi
+done
+mv -p $shredlog logs
+gzip logs/$shredlog
+cd /orcacluster/xdmod
+source .venv/bin/activate
+for src in orca*.txt; do
+    if [[ -s $src ]]; then
+	echo ">>> Process $src <<<" | tee -a $shredlog
+	uv run --with pandas fix_elapsed.py $src | tee -a $shredlog
+        /usr/bin/xdmod-shredder -v -r Orca -f slurm -i $src >> $shredlog
+	status=$?
+	if [[ $status -ne 0 ]]; then
+	    echo "Shredder failed on $src, check $shredlog"
+	    exit $status
+	fi
+        gzip "$src"
+	mv *.gz archive
+    else
+        rm -f $src
+    fi
+done
+mv -p $shredlog logs
+gzip logs/$shredlog

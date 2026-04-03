@@ -1,24 +1,21 @@
 #!/bin/bash
 
+date >> ingestor.log
+ingestlog="ingestor_$(date +'%Y%m%d%H%M').log"
+
 TZ=UTC
-cd /coeuscluster/xdmod
-for src in coeus*.txt; do
-    if [[ -s $src ]]; then
-        /usr/bin/xdmod-shredder -r Coeus -f slurm -i $src
-        mv $src "_$src"
-        gzip "_$src"
-    else
-        rm -f $src
-    fi
-done
 cd /orcacluster/xdmod
-for src in orca*.txt; do
-    if [[ -s $src ]]; then
-        /usr/bin/xdmod-shredder -r Orca -f slurm -i $src
-        mv $src "_$src"
-        gzip "_$src"
-    else
-        rm -f $src
-    fi
-done
-/usr/bin/xdmod-ingestor
+echo ">>> Run shredder <<<" | tee >> $ingestlog
+./shred | tee >> $ingestlog
+if [[ $? -ne 0 ]]; then
+    echo "Shredder failed, check $ingestlog"
+fi
+echo ">>> Run ingestor <<<" | tee >> $ingestlog
+/usr/bin/xdmod-ingestor >> $ingestlog
+status=$?
+if [[ $status -ne 0 ]]; then
+    echo "Ingestor failed, check $ingestlog"
+    exit $status
+fi
+mv -p $ingestlog logs
+gzip logs/$ingestlog
