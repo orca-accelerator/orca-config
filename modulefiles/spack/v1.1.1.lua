@@ -4,6 +4,7 @@ whatis("Version:     ", "v1.1.1")
 whatis("Description: ", "Spack package management")
 
 -- Generated with $LMOD_DIR/sh_to_modulefile /software/spack/spack-module/v1.1.1/share/spack/setup-env.sh
+
 prepend_path("PATH","/software/spack/spack-module/v1.1.1/bin")
 setenv("SPACK_PYTHON","/usr/bin/python3")
 setenv("SPACK_ROOT","/software/spack/spack-module/v1.1.1")
@@ -175,7 +176,6 @@ set_shell_function("_spack_audit_list"," \
     SPACK_COMPREPLY=\"-h --help\"\
 ","")
 set_shell_function("_spack_audit_packages"," \
-
     if $list_options; then\
         SPACK_COMPREPLY=\"-h --help\";\
     else\
@@ -1431,7 +1431,6 @@ set_shell_function("_spack_shell_wrapper"," \
                 _sp_arg=\"$1\";\
                 shift;\
             fi;\
-
             if [ \"$_sp_arg\" = \"-h\" ] || [ \"$_sp_arg\" = \"--help\" ]; then\
                 command spack env -h;\
             else\
