@@ -20,6 +20,11 @@ packages:
   fortran:
     require:
     - one_of: [gcc@13]
+  egl:
+    externals:
+    - spec: egl@1.1
+      prefix: /usr
+    buildable: false
   slurm:
     externals:
     - spec: slurm@23.11.10
